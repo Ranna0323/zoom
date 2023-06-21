@@ -24,15 +24,33 @@ function onSocketClose(){
     console.log("Disconnected from the Browser ❌")
 }
 
-function  onSocketMessage(message){
-    console.log(message.toString('utf8'));
-}
+// fake database example - 어떤 브라우저로 접속해도 소통할 수 있게
+const sockets = []
 
 wss.on("connection", (socket) => {
+    sockets.push(socket)
+    // 익명의 사용자 - 아직 nickName을 정하지 않은(Socket안에 정보 저장하기)
+    socket["nickname"] = "Anonymous";
     console.log("Connected to Browser ✅")
     socket.on("close", onSocketClose)
-    socket.on("message", onSocketMessage)
-    socket.send("hello")
+
+    socket.on("message", (msg) => {
+        // string을 object로 바꿔줌
+        const message = JSON.parse(msg);
+
+        switch (message.type) {
+            case "new_message":
+                sockets.forEach((aSocket) =>
+                    aSocket.send(`${socket.nickname}: ${message.payload}`)
+                );
+                break;
+            case "nickname":
+                socket["nickname"] = message.payload;
+                break;
+        }
+    });
+
+    // socket.send("hello")
 
 })
 

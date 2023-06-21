@@ -3,6 +3,8 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        // 암호화된 HTTPS 기반의 사이트에서 암호화되지 않은 HTTP 사이트에 요청을 보내서 Mixed content 에러 발생하는 문제 해결 코드
+        meta(http-equiv="Content-Security-Policy", content="upgrade-insecure-requests")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Noom
         link(rel="stylesheet", href="https://unpkg.com/mvp.css")
@@ -10,5 +12,11 @@ html(lang="en")
         header
             h1 Noom
         main
-            h2 Welcome to Noom
+            form#nick
+                input(type="text", placeholder="choose a nickname", required)
+                button Save
+            ul
+            form#message
+                input(type="text", placeholder="write a msg", required)
+                button Send
         script(src="/public/app.js")
