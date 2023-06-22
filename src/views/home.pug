@@ -11,20 +11,129 @@ html(lang="en")
             h1 Noom
         main
             div#welcome
-                form
-                    input#roomName(placeholder="room name" required, type="text")
-                    input#name(placeholder="nickname" required, type="text")
+                form#welcome_form
+                    div
+                        input#roomName(placeholder="room name" required, type="text")
+                        input#name(placeholder="nickname" required, type="text" autocomplete="on")
                     button Enter Room
+                h4 Open Rooms:
+                ul
             div#room
                 h3
                 h4
-                ul
-                //form#name
-                //    input(placeholder="nickname", required, type="text")
-                    //button Change
-                form#msg
-                    input(placeholder="message", required, type="text")
-                    button Send
+                div
+                    ul
+                    form#msg_form
+                        input(placeholder="message", required, type="text")
+                        button Send
         // ws API는 브라우저에 설치되어 있었지만 socket.io는 아니기 때문에 frontend에 socket.io 설치
         script(src="/socket.io/socket.io.js")
         script(src="/public/app.js")
+
+style.
+    #welcome #welcome_form {
+        display: flex;
+        max-width: 100%;
+        padding: 1.5rem;
+        background: #F5EFE7;
+    }
+
+    #welcome #welcome_form button {
+        background: #D8C4B6;
+        border: 2px solid #D8C4B6;
+        color: #977E7D;
+    }
+
+    #welcome #welcome_form button:hover {
+        background: #967E76;
+        border: 2px solid #967E76;
+        color: #FFFFFF;
+    }
+
+    #welcome #welcome_form div {
+        flex-grow: 2;
+        margin-right: 16px;
+    }
+
+    #welcome #welcome_form div input {
+        margin: 8px;
+        width: 100%;
+        border-radius: 5px;
+        padding: 15px 18px;
+        box-sizing: border-box;
+        max-width: 100%;
+    }
+
+    #room {
+        padding: 1.5rem;
+        border: 1px solid var(--color-bg-secondary);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow) var(--color-shadow);
+        background: #F5EFE7;
+    }
+
+    #room #msg_form {
+        display: flex;
+        max-width: 100%;
+        border: none;
+        box-shadow: none;
+    }
+
+    #room #msg_form input {
+        flex-grow: 2;
+        margin: 8px;
+        width: 100%;
+        border-radius: 5px;
+        padding: 15px 18px;
+        box-sizing: border-box;
+        max-width: 100%;
+    }
+
+    #room #msg_form button{
+        background: #D8C4B6;
+        border: 2px solid #D8C4B6;
+        color: #977E7D;
+    }
+
+    #room #msg_form button:hover{
+        background: #977E7D;
+        border: 2px solid #977E7D;
+        color: #FFFFFF;
+    }
+
+    #room ul {
+        list-style:none;
+    }
+
+    #room ul li{
+        list-style: none;
+    }
+
+    #room ul .mine{
+        display: flex;
+        padding: 12px 24px;
+    }
+
+    #room ul .mine span{
+        background: #213555;
+        padding: 10px;
+        color: #FFFFFF;
+        border-radius: 5px;
+        margin-left: auto;
+    }
+
+    #room ul .system {
+        text-align: center;
+        padding: 12px;
+    }
+
+    #room ul .others{
+        padding: 12px 0;
+    }
+
+    #room ul .others span{
+        background: #4F709C;
+        padding: 10px;
+        color: #FFFFFF;
+        border-radius: 5px;
+    }
