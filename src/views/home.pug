@@ -5,7 +5,7 @@ html(lang="en")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Noom
-        link(rel="stylesheet", href="https://unpkg.com/mvp.css")
+        //link(rel="stylesheet", href="https://unpkg.com/mvp.css")
     body
         header
             h1 Noom
@@ -14,23 +14,62 @@ html(lang="en")
                 form#welcome_form
                     div
                         input#roomName(placeholder="room name" required, type="text")
-                        input#name(placeholder="nickname" required, type="text" autocomplete="on")
+                        input#name(placeholder="Nickname" required, type="text")
                     button Enter Room
-                h4 Open Rooms:
+                h4 👀 Open Rooms:
                 ul
             div#room
-                h3
-                h4
-                div
+                div#room_info
+                    h3
+                    buttton#exit Exit
+                form#nickname
+                    h4 😁 Your Nickname
+                    input(placeholder="Nickname" required, type="text")
+                    button change
+                div#room_div
                     ul
-                    form#msg_form
-                        input(placeholder="message", required, type="text")
+                    form#msg
+                        input(placeholder="message" required, type="text")
                         button Send
         // ws API는 브라우저에 설치되어 있었지만 socket.io는 아니기 때문에 frontend에 socket.io 설치
         script(src="/socket.io/socket.io.js")
         script(src="/public/app.js")
 
 style.
+    header {
+        text-align: var(--justify-important);
+        margin: 0 auto;
+        max-width: var(--width-content);
+        padding: 3rem 1rem;
+    }
+
+    body {
+        /*width: 100vw;*/
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /*align-items: center;*/
+        margin: 40px;
+    }
+
+    main {
+        margin: 0 auto;
+        max-width: var(--width-content);
+        padding: 3rem 1rem;
+        width: 80%;
+    }
+
+    button {
+        cursor: pointer;
+        border: none;
+        outline: none;
+        border-radius: 10px;
+        /*background-color: #fe9706;*/
+        font-weight: bold;
+        /*color: white;*/
+        font-size: 16px;
+    }
+
     #welcome #welcome_form {
         display: flex;
         max-width: 100%;
@@ -56,7 +95,9 @@ style.
     }
 
     #welcome #welcome_form div input {
-        margin: 8px;
+        border: none;
+        outline: none;
+        /*margin: 8px;*/
         width: 100%;
         border-radius: 5px;
         padding: 15px 18px;
@@ -64,7 +105,12 @@ style.
         max-width: 100%;
     }
 
-    #room {
+    #welcome #welcome_form div #name {
+        margin-top: 8px;
+    }
+
+
+    #room #room_div {
         padding: 1.5rem;
         border: 1px solid var(--color-bg-secondary);
         border-radius: var(--border-radius);
@@ -72,49 +118,110 @@ style.
         background: #F5EFE7;
     }
 
-    #room #msg_form {
+    #room #room_info {
         display: flex;
-        max-width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #room #msg {
+        display: flex;
+        /*max-width: 100%;*/
+        align-items: center;
         border: none;
         box-shadow: none;
+        padding: 0;
     }
 
-    #room #msg_form input {
-        flex-grow: 2;
-        margin: 8px;
-        width: 100%;
-        border-radius: 5px;
-        padding: 15px 18px;
-        box-sizing: border-box;
-        max-width: 100%;
+    #room #nickname{
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        margin-bottom: 24px;
     }
 
-    #room #msg_form button{
+    #room #msg input{
+        margin: 0;
+        width: 80%;
+        border: none;
+        outline: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        background-color: #ffffff;
+    }
+
+    #room #nickname input{
+        margin: 0;
+        /*width: 80%;*/
+        border: none;
+        outline: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        background-color: #F5EFE7;
+    }
+
+    #room #exit {
+        background-color: #e61111;
+        padding: 8px 10px;
+        border-radius: 6px;
+        /*border: 1px;*/
+        color: #ffffff;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+
+
+    #room #msg button, #room #nickname button {
         background: #D8C4B6;
         border: 2px solid #D8C4B6;
         color: #977E7D;
+        width: 20%;
+        padding: 5px;
     }
 
-    #room #msg_form button:hover{
+    #room #msg button:hover #room #nickname button:hover{
         background: #977E7D;
         border: 2px solid #977E7D;
         color: #FFFFFF;
     }
 
     #room ul {
-        list-style:none;
+        height: 300px;
+        overflow-y: scroll;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 8px;
+        border-radius: 4px;
+        margin: 0;
+        border: 1px solid #ffffff;
     }
 
-    #room ul li{
+    #room ul::-webkit-scrollbar {
+        width: 10px; /* 스크롤바의 너비 */
+    }
+
+    #room ul::-webkit-scrollbar-thumb {
+        height: 30%; /* 스크롤바의 길이 */
+        background: #848484; /* 스크롤바의 색상 */
+        border-radius: 10px;
+    }
+
+    #room ul::-webkit-scrollbar-track {
+        background: #ffffff; /*스크롤바 뒷 배경 색상*/
+    }
+
+    #room ul li {
         list-style: none;
     }
 
-    #room ul .mine{
+    #room ul .mine {
         display: flex;
         padding: 12px 24px;
     }
 
-    #room ul .mine span{
+    #room ul .mine span {
         background: #213555;
         padding: 10px;
         color: #FFFFFF;
@@ -127,11 +234,11 @@ style.
         padding: 12px;
     }
 
-    #room ul .others{
+    #room ul .others {
         padding: 12px 0;
     }
 
-    #room ul .others span{
+    #room ul .others span {
         background: #4F709C;
         padding: 10px;
         color: #FFFFFF;
