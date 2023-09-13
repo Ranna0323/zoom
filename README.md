@@ -1,3 +1,19 @@
 #Noom
 
-Zoom Clone using NodeJS, WebRTC and Websockets.
+2023.06.19 ~ 2023.06.26
+
+- 실시간 온라인 채팅 및 화상통화 서비스
+- 웹소켓, [socket.io](http://socket.io/) 를 이용하여 클라이언트, 서버간의 연결을 생성
+    - 실시간 채팅
+    - 방(Rooms)에 있는 사용자들에게 새로운 사용자가 참가하면 알리기
+    - 방(Rooms)에서 누군가 나갈 때 남아있는 사용자들에게 알리기(disconnecting)
+    - 채팅방이 생성/삭제될 경우 사용자들에게 나타내고, 각 방에 몇 명이 참여 중인지 표시
+- 자바스크립트로 웹캠 제어하는 방법
+    - 채팅방에 입장하기 전 닉네임 입력
+    - 카메라, 소리 켜기/끄기
+- WebRTC를 이용한 P2P 통신
+    - 웹캠을 연결하여 1:1 화상 통화
+- pug(template)을 사용하여 프론트엔드 작성
+- MVP css를 사용하여 기본적인 css 설정
+- ****줌 챌린지 20기**** 우수작품 선정(#jran0323) - https://nomadcoders.co/community/thread/6103
+- 개발환경 : Node.js, pug, Javascript
